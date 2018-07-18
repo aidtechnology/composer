@@ -747,6 +747,106 @@ function createReturningTransactionModel(app, dataSource) {
     });
 }
 
+/**
+ * Register a composer named transaction method at a POST method on the REST API.
+ * @param {Object} app The LoopBack application.
+ * @param {Object} dataSource The LoopBack data source.
+ * @param {Object} Transaction The LoopBack Transaction model
+ * @param {Object} connector The LoopBack connector.
+ * @param {Transaction} transaction the named Composer transaction to register
+ */
+function registerReturnTransactionMethod(app, dataSource, Transaction, connector, transaction) {
+
+    console.log('\n\nRegistering named transaction: ' + transaction.name);
+
+    let returnType;
+    if (transaction.decorators.returns.isArray) {
+        returnType = [transaction.decorators.returns.schema];
+    } else {
+        returnType = transaction.decorators.returns.schema;
+    }
+
+    // Apply any required updates to the specified model schema.
+    // TODO Uncomment this to have transactions in API root
+    //transaction.schema = updateModelSchema(transaction.schema);
+
+    // Create and register the models.
+    const TransactionSchema = app.loopback.createModel(transaction.schema);
+
+    // TODO Uncomment this to have transactions in API root
+    //restrictModelMethods(transaction.schema, TransactionSchema);
+
+    // Now we register the model against the data source.
+    app.model(TransactionSchema, {
+        dataSource: dataSource,
+        public: true
+    });
+
+    // TODO Uncomment this to have transactions in API root
+    //TransactionSchema.transactionMethod = (data, options, callback) => {
+    Transaction.transactionMethod = (data, options, callback) => {
+        connector.create(transaction.name, data.toJSON(), options, callback);
+    };
+
+    // TODO Uncomment this to have transactions in API root
+    //TransactionSchema.remoteMethod(
+    Transaction.remoteMethod(
+        'transactionMethod', {
+            description: transaction.name,
+            accepts: [{
+                arg: 'data',
+                type: transaction.name,
+                required: true,
+                http: {
+                    source: 'body'
+                }
+            }, {
+                arg: 'options',
+                type: 'object',
+                http: 'optionsFromRequest'
+            }],
+            returns: {
+                type : returnType,
+                root: true
+            },
+            http: {
+                verb: 'post',
+                path: '/' + transaction.name
+            }
+        }
+    );
+}
+
+/**
+ * Register all of the Composer query methods.
+ * @param {Object} app The LoopBack application.
+ * @param {Object} dataSource The LoopBack data source.
+ * @param {Object[]} modelDefinitions An array of model definitions.
+ * @returns {Promise} a promise when complete
+ */
+function registerReturnTransactionMethods(app, dataSource) {
+
+    console.log('registerReturnTransactionMethods');
+    // Grab the query model.
+    const Transaction = app.models.ReturningTransaction;
+    const connector = dataSource.connector;
+
+    return new Promise((resolve, reject) => {
+        connector.discoverReturnTransactions(null, (error, transactions) => {
+            console.log('discoverReturnTransactions');
+            if (error) {
+                return reject(error);
+            }
+
+            return transactions.reduce((promise, transaction) => {
+                registerReturnTransactionMethod(app, dataSource, Transaction, connector, transaction);
+                return transaction;
+            }, Promise.resolve([]));
+
+            // resolve(transactions);
+        });
+    });
+}
 
 module.exports = function (app, callback) {
 
@@ -787,6 +887,9 @@ module.exports = function (app, callback) {
         if(modelDefinitions.length>0) {
             // Register the named query methods, passing in whether we should use namespaces
             registerQueryMethods(app, dataSource, modelDefinitions[0].namespaces);
+
+            // Register the returning transactions methods)
+            registerReturnTransactionMethods(app, dataSource);
         }
 
         // For each model definition (type), we need to generate a Loopback model definition JSON file.
