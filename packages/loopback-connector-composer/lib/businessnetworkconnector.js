@@ -1207,6 +1207,123 @@ class BusinessNetworkConnector extends Connector {
     }
 
     /**
+     * Retrieve the list of all named transactions in the business network
+     * @param {Object} options the options provided by Loopback.
+     * @param {function} callback the callback to call when complete.
+     * @returns {Promise} A promise that is resolved when complete.
+     */
+    discoverReturnTransactions(options, callback) {
+        debug('discoverTransactions', options);
+        let models = [];
+        let modelNames = new Set();
+        let namesAreUnique = true;
+        return this.ensureConnected(options)
+            .then(() => {
+                // Find all the transactions in the business network.
+                const transactions = this.introspector.getClassDeclarations()
+                    .filter((classDeclaration) => {
+                        // Filter out anything that isn't a Transaction
+                        return classDeclaration instanceof TransactionDeclaration;
+                    })
+                    .filter((classDeclaration) => {
+                        // Filter out any system types.
+                        return !classDeclaration.isSystemType();
+                    });
+
+                // Look for duplicate transaction names, and set a flag if so.
+                transactions.forEach((classDeclaration) => {
+                    const name = classDeclaration.getName();
+                    if (modelNames.has(name)) {
+                        namesAreUnique = false;
+                    } else {
+                        modelNames.add(name);
+                    }
+                });
+
+                // Determine whether or not we are going to use namespaces.
+                let namespaces;
+                switch (this.settings.namespaces) {
+                case 'always':
+                    namespaces = true;
+                    break;
+                case 'required':
+                    namespaces = !namesAreUnique;
+                    break;
+                case 'never':
+                    if (!namesAreUnique) {
+                        throw new Error('namespaces has been set to never, but type names in business network are not unique');
+                    }
+                    namespaces = false;
+                }
+                this.visitor = new LoopbackVisitor(namespaces);
+
+                // Add all the types to the result.
+                transactions.forEach((classDeclaration) => {
+
+                    const returnsDecorator = classDeclaration.getDecorator('returns');
+                    if (returnsDecorator) {
+                        // Generate a LoopBack schema for the type.
+                        let transactionSchema = classDeclaration.accept(this.visitor, {
+                            first : true,
+                            modelFile : classDeclaration.getModelFile()
+                        });
+
+                        let transactionModel = {
+                            type : 'table',
+                            name : namespaces ? classDeclaration.getFullyQualifiedName() : classDeclaration.getName(),
+                            namespaces : namespaces,
+                            schema : transactionSchema,
+                            decorators : {
+                                commit: classDeclaration.getDecorator('commit')
+                            }
+                        };
+
+                        let returnDecoratorSchema = null;
+
+                        if (returnsDecorator.isTypeEnum()) {
+
+                            // ENUM
+                            returnDecoratorSchema = returnsDecorator.getResolvedType().accept(this.visitor, {
+                                first: true,
+                                modelFile: returnsDecorator.getResolvedType().getModelFile()
+                            });
+                            returnDecoratorSchema = returnDecoratorSchema.type;
+
+                        } else if (!returnsDecorator.isPrimitive()) {
+
+                            // COMPLEX
+                            returnDecoratorSchema = returnsDecorator.getResolvedType().accept(this.visitor, {
+                                first: true,
+                                modelFile: returnsDecorator.getResolvedType().getModelFile()
+                            });
+                            returnDecoratorSchema = returnDecoratorSchema.properties;
+
+                        } else {
+
+                            // PRIMITIVE
+                            returnDecoratorSchema = returnsDecorator.getResolvedType();
+                        }
+
+                        // Add Return Decorator
+                        transactionModel.decorators.returns = {
+                            schema: returnDecoratorSchema,
+                            isArray: returnsDecorator.isArray()
+                        };
+
+                        models.push(transactionModel);
+                    }
+                });
+
+                debug('discoverTransactions', 'returning list of model class declarations', models);
+                callback(null, models);
+            })
+            .catch((error) => {
+                debug('discoverTransactions', 'error thrown discovering list of transaction declarations', error);
+                callback(error);
+            });
+    }
+
+    /**
      * Retrieve the model definition for the specified model name.
      * @param {string} object The name of the model.
      * @param {Object} options The options provided by Loopback.
