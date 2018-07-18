@@ -642,7 +642,12 @@ class BusinessNetworkConnector extends Connector {
                     // Ensure we return the generated identifier, so that LoopBack can return
                     // the generated identifier back to the user.
                     return businessNetworkConnection.submitTransaction(resource)
-                        .then(() => {
+                        .then(response => {
+                            // Return the response for returning transactions
+                            if (response) {
+                                serializer = this.serializer;
+                                return serializer.toJSON(response);
+                            }
                             return resource.getIdentifier();
                         });
 
