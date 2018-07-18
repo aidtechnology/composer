@@ -777,15 +777,16 @@ function registerReturnTransactionMethod(app, dataSource, Transaction, connector
     //restrictModelMethods(transaction.schema, TransactionSchema);
 
     // Now we register the model against the data source.
+    // TODO Set `public:true` to have transactions in API root
     app.model(TransactionSchema, {
         dataSource: dataSource,
-        public: true
+        public: false
     });
 
     // TODO Uncomment this to have transactions in API root
     //TransactionSchema.transactionMethod = (data, options, callback) => {
     Transaction.transactionMethod = (data, options, callback) => {
-        connector.create(transaction.name, data.toJSON(), options, callback);
+        connector.create(transaction.name, data, options, callback);
     };
 
     // TODO Uncomment this to have transactions in API root
