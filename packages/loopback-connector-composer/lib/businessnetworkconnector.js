@@ -1132,7 +1132,7 @@ class BusinessNetworkConnector extends Connector {
                         return (classDeclaration instanceof AssetDeclaration) ||
                                (classDeclaration instanceof ConceptDeclaration) ||
                                (classDeclaration instanceof ParticipantDeclaration) ||
-                               (classDeclaration instanceof TransactionDeclaration);
+                               (classDeclaration instanceof TransactionDeclaration  && !classDeclaration.getDecorator('returns'));
 
                     })
                     .filter((classDeclaration) => {
