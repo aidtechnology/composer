@@ -737,7 +737,7 @@ function createReturningTransactionModel(app, dataSource) {
     };
     modelSchema = updateModelSchema(modelSchema);
 
-    // Create the ReturnTransaction model which is an anchor for all returning transactions methods.
+    // Create the ReturningTransaction model which is an anchor for all returning transactions methods.
     const ReturningTransaction = app.loopback.createModel(modelSchema);
 
     // Register the query model.
@@ -755,9 +755,9 @@ function createReturningTransactionModel(app, dataSource) {
  * @param {Object} connector The LoopBack connector.
  * @param {Transaction} transaction the named Composer transaction to register
  */
-function registerReturnTransactionMethod(app, dataSource, Transaction, connector, transaction) {
+function registerReturningTransactionMethod(app, dataSource, Transaction, connector, transaction) {
 
-    console.log('\n\nRegistering named transaction: ' + transaction.name);
+    console.log('Registering returning transaction: ' + transaction.name);
 
     let returnType;
     if (transaction.decorators.returns.isArray) {
@@ -765,32 +765,17 @@ function registerReturnTransactionMethod(app, dataSource, Transaction, connector
     } else {
         returnType = transaction.decorators.returns.schema;
     }
+    const TransactionSchema = app.loopback.createModel(transaction.transactionSchema);
 
-    // Apply any required updates to the specified model schema.
-    // TODO Uncomment this to have transactions in API root
-    //transaction.schema = updateModelSchema(transaction.schema);
-
-    // Create and register the models.
-    const TransactionSchema = app.loopback.createModel(transaction.schema);
-
-    // TODO Uncomment this to have transactions in API root
-    //restrictModelMethods(transaction.schema, TransactionSchema);
-
-    // Now we register the model against the data source.
-    // TODO Set `public:true` to have transactions in API root
     app.model(TransactionSchema, {
         dataSource: dataSource,
         public: false
     });
 
-    // TODO Uncomment this to have transactions in API root
-    //TransactionSchema.transactionMethod = (data, options, callback) => {
     Transaction.transactionMethod = (data, options, callback) => {
         connector.create(transaction.name, data, options, callback);
     };
 
-    // TODO Uncomment this to have transactions in API root
-    //TransactionSchema.remoteMethod(
     Transaction.remoteMethod(
         'transactionMethod', {
             description: transaction.name,
@@ -825,26 +810,23 @@ function registerReturnTransactionMethod(app, dataSource, Transaction, connector
  * @param {Object[]} modelDefinitions An array of model definitions.
  * @returns {Promise} a promise when complete
  */
-function registerReturnTransactionMethods(app, dataSource) {
+function registerReturningTransactionMethods(app, dataSource) {
 
-    console.log('registerReturnTransactionMethods');
+    console.log('Discovering the Returning Transactions..');
     // Grab the query model.
     const Transaction = app.models.ReturningTransaction;
     const connector = dataSource.connector;
 
     return new Promise((resolve, reject) => {
-        connector.discoverReturnTransactions(null, (error, transactions) => {
-            console.log('discoverReturnTransactions');
+        connector.discoverReturningTransactions(null, (error, transactions) => {
+            console.log('discoverReturningTransactions');
             if (error) {
                 return reject(error);
             }
 
             return transactions.reduce((promise, transaction) => {
-                registerReturnTransactionMethod(app, dataSource, Transaction, connector, transaction);
-                return transaction;
+                registerReturningTransactionMethod(app, dataSource, Transaction, connector, transaction);
             }, Promise.resolve([]));
-
-            // resolve(transactions);
         });
     });
 }
@@ -890,7 +872,7 @@ module.exports = function (app, callback) {
             registerQueryMethods(app, dataSource, modelDefinitions[0].namespaces);
 
             // Register the returning transactions methods)
-            registerReturnTransactionMethods(app, dataSource);
+            registerReturningTransactionMethods(app, dataSource);
         }
 
         // For each model definition (type), we need to generate a Loopback model definition JSON file.
