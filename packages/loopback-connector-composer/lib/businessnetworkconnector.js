@@ -645,8 +645,10 @@ class BusinessNetworkConnector extends Connector {
                         .then(response => {
                             // Return the response for returning transactions
                             if (response) {
-                                serializer = this.serializer;
-                                return serializer.toJSON(response);
+                                if (response instanceof Object && !(response instanceof Array)) {
+                                    return this.businessNetworkDefinition.getSerializer().toJSON(response);
+                                }
+                                return response;
                             }
                             return resource.getIdentifier();
                         });
@@ -1212,7 +1214,7 @@ class BusinessNetworkConnector extends Connector {
      * @param {function} callback the callback to call when complete.
      * @returns {Promise} A promise that is resolved when complete.
      */
-    discoverReturnTransactions(options, callback) {
+    discoverReturningTransactions(options, callback) {
         debug('discoverTransactions', options);
         let models = [];
         let modelNames = new Set();
@@ -1268,18 +1270,17 @@ class BusinessNetworkConnector extends Connector {
                             modelFile : classDeclaration.getModelFile()
                         });
 
-                        let transactionModel = {
+                        let returningTransactionModel = {
                             type : 'table',
                             name : namespaces ? classDeclaration.getFullyQualifiedName() : classDeclaration.getName(),
                             namespaces : namespaces,
-                            schema : transactionSchema,
+                            transactionSchema : transactionSchema,
                             decorators : {
-                                commit: classDeclaration.getDecorator('commit')
+                                commit: classDeclaration.getDecorator('commit') ? classDeclaration.getDecorator('commit').getArguments()[0] : true
                             }
                         };
 
                         let returnDecoratorSchema = null;
-
                         if (returnsDecorator.isTypeEnum()) {
 
                             // ENUM
@@ -1305,12 +1306,12 @@ class BusinessNetworkConnector extends Connector {
                         }
 
                         // Add Return Decorator
-                        transactionModel.decorators.returns = {
+                        returningTransactionModel.decorators.returns = {
                             schema: returnDecoratorSchema,
                             isArray: returnsDecorator.isArray()
                         };
 
-                        models.push(transactionModel);
+                        models.push(returningTransactionModel);
                     }
                 });
 
