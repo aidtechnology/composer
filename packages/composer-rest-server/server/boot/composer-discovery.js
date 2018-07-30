@@ -765,19 +765,29 @@ function registerReturningTransactionMethod(app, dataSource, Transaction, connec
     } else {
         returnType = transaction.decorators.returns.schema;
     }
+
+    // Apply any required updates to the specified model schema.
+    transaction.transactionSchema = updateModelSchema(transaction.transactionSchema);
+
+    // Create and register the models.
     const TransactionSchema = app.loopback.createModel(transaction.transactionSchema);
 
+    restrictModelMethods(transaction.transactionSchema, TransactionSchema);
+
+    // Now we register the model against the data source.
     app.model(TransactionSchema, {
         dataSource: dataSource,
-        public: false
+        public: true
     });
 
-    Transaction.transactionMethod = (data, options, callback) => {
+    // Create the transactionMethod
+    TransactionSchema.create = (data, options, callback) => {
         connector.create(transaction.name, data, options, callback);
     };
 
-    Transaction.remoteMethod(
-        'transactionMethod', {
+    // Create the remotheMethod for the transaction
+    TransactionSchema.remoteMethod(
+        'create', {
             description: transaction.name,
             accepts: [{
                 arg: 'data',
@@ -797,7 +807,7 @@ function registerReturningTransactionMethod(app, dataSource, Transaction, connec
             },
             http: {
                 verb: 'post',
-                path: '/' + transaction.name
+                path: '/'
             }
         }
     );
@@ -818,14 +828,18 @@ function registerReturningTransactionMethods(app, dataSource) {
     const connector = dataSource.connector;
 
     return new Promise((resolve, reject) => {
-        connector.discoverReturningTransactions(null, (error, transactions) => {
+        connector.discoverReturningTransactions({}, (error, transactions) => {
             console.log('discoverReturningTransactions');
             if (error) {
                 return reject(error);
             }
 
             return transactions.reduce((promise, transaction) => {
-                registerReturningTransactionMethod(app, dataSource, Transaction, connector, transaction);
+                return generateModelSchemas(connector, [transaction])
+                    .then(schema => {
+                        transaction.transactionSchema = schema[0];
+                        registerReturningTransactionMethod(app, dataSource, Transaction, connector, transaction);
+                    });
             }, Promise.resolve([]));
         });
     });
