@@ -1264,17 +1264,11 @@ class BusinessNetworkConnector extends Connector {
 
                     const returnsDecorator = classDeclaration.getDecorator('returns');
                     if (returnsDecorator) {
-                        // Generate a LoopBack schema for the type.
-                        let transactionSchema = classDeclaration.accept(this.visitor, {
-                            first : true,
-                            modelFile : classDeclaration.getModelFile()
-                        });
 
                         let returningTransactionModel = {
                             type : 'table',
                             name : namespaces ? classDeclaration.getFullyQualifiedName() : classDeclaration.getName(),
                             namespaces : namespaces,
-                            transactionSchema : transactionSchema,
                             decorators : {
                                 commit: classDeclaration.getDecorator('commit') ? classDeclaration.getDecorator('commit').getArguments()[0] : true
                             }
@@ -1359,7 +1353,6 @@ class BusinessNetworkConnector extends Connector {
                 if (!classDeclaration) {
                     throw new Error(`Failed to find type definition for ${object}`);
                 }
-
                 // Generate a LoopBack schema for the type.
                 let schema = classDeclaration.accept(this.visitor, {
                     first : true,
