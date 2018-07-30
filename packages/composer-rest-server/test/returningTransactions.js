@@ -178,7 +178,7 @@ chai.use(require('chai-http'));
 
             it('should submit the transaction and return a string', () => {
                 return chai.request(app)
-                    .post(`/api/returningtx/${prefix}PublishBondReturnString`)
+                    .post(`/api/${prefix}PublishBondReturnString`)
                     .send({
                         $class: 'org.acme.bond.PublishBondReturnString',
                         ISINCode: assetData[0].ISINCode,
@@ -199,7 +199,7 @@ chai.use(require('chai-http'));
 
             it('should submit the transaction and return a string array', () => {
                 return chai.request(app)
-                    .post(`/api/returningtx/${prefix}PublishBondReturnStringArray`)
+                    .post(`/api/${prefix}PublishBondReturnStringArray`)
                     .send({
                         $class: 'org.acme.bond.PublishBondReturnStringArray',
                         ISINCode: assetData[1].ISINCode,
@@ -219,7 +219,7 @@ chai.use(require('chai-http'));
 
             it('should submit the transaction and return a concept', () => {
                 return chai.request(app)
-                    .post(`/api/returningtx/${prefix}PublishBondReturnConcept`)
+                    .post(`/api/${prefix}PublishBondReturnConcept`)
                     .send({
                         $class: 'org.acme.bond.PublishBondReturnConcept',
                         ISINCode: assetData[2].ISINCode,
@@ -240,7 +240,7 @@ chai.use(require('chai-http'));
 
             it('should submit the read only transaction', () => {
                 return chai.request(app)
-                    .post(`/api/returningtx/${prefix}ExistsBond`)
+                    .post(`/api/${prefix}ExistsBond`)
                     .send({
                         $class: 'org.acme.bond.ExistsBond',
                         ISINCode: assetData[2].ISINCode
