@@ -788,7 +788,7 @@ function registerReturningTransactionMethod(app, dataSource, Transaction, connec
     // Create the remotheMethod for the transaction
     TransactionSchema.remoteMethod(
         'create', {
-            description: transaction.name,
+            description: 'Execute returning transaction ' + transaction.name,
             accepts: [{
                 arg: 'data',
                 type: transaction.name,
