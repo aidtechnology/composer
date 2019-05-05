@@ -9,14 +9,15 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "prepublish": "node ./scripts/tsgen.js",
+    "prepublish": "npm run snyk-protect; node ./scripts/tsgen.js",
     "pretest": "npm run licchk",
     "licchk": "license-check-and-add",
     "postlicchk": "npm run doc",
     "doc": "jsdoc --pedantic --recurse -c jsdoc.json",
     "postdoc": "npm run lint",
     "lint": "eslint .",
-    "test": "karma start --single-run"
+    "test": "karma start --single-run",
+    "snyk-protect": "snyk protect"
   },
   "repository": {
     "type": "git",
@@ -92,6 +93,8 @@
   "dependencies": {
     "composer-runtime": "0.20.1",
     "composer-runtime-web": "0.20.1",
-    "uuid": "3.0.1"
-  }
+    "uuid": "3.0.1",
+    "snyk": "^1.161.1"
+  },
+  "snyk": true
 }
