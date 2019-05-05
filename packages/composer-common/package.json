@@ -9,7 +9,7 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "prepublish": "node ./scripts/systemmodelgen.js && pegjs ./lib/introspect/parser.pegjs && pegjs ./lib/acl/parser.pegjs && pegjs --allowed-start-rules Start,SelectStatement ./lib/query/parser.pegjs && node ./scripts/tsgen.js",
+    "prepublish": "npm run snyk-protect; node ./scripts/systemmodelgen.js && pegjs ./lib/introspect/parser.pegjs && pegjs ./lib/acl/parser.pegjs && pegjs --allowed-start-rules Start,SelectStatement ./lib/query/parser.pegjs && node ./scripts/tsgen.js",
     "pretest": "npm run prepublish && npm run lint",
     "lint": "eslint .",
     "postlint": "npm run licchk",
@@ -19,7 +19,8 @@
     "test": "node ./scripts/api-changelog.js && nyc mocha --recursive -t 10000",
     "mocha": "mocha --recursive -t 10000",
     "nyc": "nyc mocha --recursive -t 10000",
-    "regenmodel": "node ./scripts/systemmodelgen.js"
+    "regenmodel": "node ./scripts/systemmodelgen.js",
+    "snyk-protect": "snyk protect"
   },
   "repository": {
     "type": "git",
@@ -76,7 +77,8 @@
     "thenify-all": "1.6.0",
     "urijs": "1.19.1",
     "uuid": "3.0.1",
-    "winston": "2.3.1"
+    "winston": "2.3.1",
+    "snyk": "^1.161.1"
   },
   "license-check-and-add-config": {
     "folder": ".",
@@ -150,5 +152,6 @@
     "branches": 100,
     "functions": 100,
     "lines": 100
-  }
+  },
+  "snyk": true
 }
