@@ -1,0 +1,38 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.3
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-AXIOS-174505:
+    - composer-client > composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-client > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-admin > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-admin > composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-client > composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-documentation > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-documentation > composer-admin > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-admin > composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-documentation > composer-client > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-documentation > composer-client > composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-documentation > composer-client > composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-documentation > composer-admin > composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
+    - composer-documentation > composer-admin > composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-05T23:30:55.064Z'
