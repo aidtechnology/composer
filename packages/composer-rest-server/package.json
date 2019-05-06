@@ -19,7 +19,9 @@
     "postdoc": "npm run lint",
     "lint": "eslint .",
     "test": "nyc mocha --recursive -t 10000",
-    "mocha": "mocha --recursive -t 10000"
+    "mocha": "mocha --recursive -t 10000",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -60,7 +62,8 @@
     "strong-error-handler": "1.0.1",
     "touch": "1.0.0",
     "ws": "3.0.0",
-    "yargs": "10.0.3"
+    "yargs": "10.0.3",
+    "snyk": "^1.161.1"
   },
   "devDependencies": {
     "chai": "3.5.0",
@@ -141,5 +144,6 @@
     "branches": 100,
     "functions": 100,
     "lines": 100
-  }
+  },
+  "snyk": true
 }
