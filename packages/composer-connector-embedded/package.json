@@ -14,7 +14,9 @@
     "doc": "jsdoc --pedantic --recurse -c jsdoc.json",
     "postdoc": "npm run lint",
     "lint": "eslint .",
-    "test": "nyc mocha --recursive -t 10000"
+    "test": "nyc mocha --recursive -t 10000",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -76,7 +78,8 @@
   "dependencies": {
     "composer-common": "0.20.1",
     "composer-runtime": "0.20.1",
-    "composer-runtime-embedded": "0.20.1"
+    "composer-runtime-embedded": "0.20.1",
+    "snyk": "^1.161.1"
   },
   "nyc": {
     "exclude": [
@@ -96,5 +99,6 @@
     "branches": 100,
     "functions": 100,
     "lines": 100
-  }
+  },
+  "snyk": true
 }
