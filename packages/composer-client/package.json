@@ -9,7 +9,7 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "prepublish": "node ./scripts/tsgen.js",
+    "prepublish": "npm run snyk-protect; node ./scripts/tsgen.js",
     "pretest": "npm run licchk",
     "licchk": "license-check-and-add",
     "postlicchk": "npm run doc",
@@ -18,7 +18,8 @@
     "lint": "eslint .",
     "test": "node ./scripts/api-changelog.js && npm run nyc",
     "nyc": "nyc mocha --recursive -t 10000",
-    "mocha": " mocha --recursive -t 10000"
+    "mocha": " mocha --recursive -t 10000",
+    "snyk-protect": "snyk protect"
   },
   "repository": {
     "type": "git",
@@ -76,7 +77,8 @@
     "composer-connector-proxy": "0.20.1",
     "composer-wallet-filesystem": "0.20.1",
     "composer-wallet-inmemory": "0.20.1",
-    "uuid": "3.0.1"
+    "uuid": "3.0.1",
+    "snyk": "^1.161.1"
   },
   "devDependencies": {
     "chai": "3.5.0",
@@ -107,5 +109,6 @@
     "branches": 100,
     "functions": 100,
     "lines": 100
-  }
+  },
+  "snyk": true
 }
