@@ -1,0 +1,24 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.3
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-AXIOS-174505:
+    - composer-common > axios:
+        patched: '2019-05-06T01:27:40.087Z'
+    - composer-admin > composer-common > axios:
+        patched: '2019-05-06T01:27:40.087Z'
+    - composer-client > composer-common > axios:
+        patched: '2019-05-06T01:27:40.087Z'
+    - composer-connector-embedded > composer-common > axios:
+        patched: '2019-05-06T01:27:40.087Z'
+    - composer-admin > composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-06T01:27:40.087Z'
+    - composer-client > composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-06T01:27:40.087Z'
+    - composer-admin > composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-06T01:27:40.087Z'
+    - composer-client > composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-06T01:27:40.087Z'
+    - composer-connector-embedded > composer-runtime-embedded > composer-runtime-pouchdb > composer-common > axios:
+        patched: '2019-05-06T01:27:40.087Z'
