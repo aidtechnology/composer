@@ -14,7 +14,9 @@
     "licchk": "license-check-and-add",
     "test": "nyc mocha --recursive -t 10000",
     "mocha": "mocha --recursive -t 10000",
-    "nyc": "nyc mocha --recursive -t 10000"
+    "nyc": "nyc mocha --recursive -t 10000",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [],
   "author": "MBW",
@@ -55,7 +57,8 @@
     "rimraf": "2.5.4",
     "through2": "^2.0.3",
     "vinyl-fs": "2.4.4",
-    "yargs": "10.0.3"
+    "yargs": "10.0.3",
+    "snyk": "^1.161.1"
   },
   "license-check-and-add-config": {
     "folder": ".",
@@ -121,5 +124,6 @@
     "branches": 100,
     "functions": 100,
     "lines": 100
-  }
+  },
+  "snyk": true
 }
