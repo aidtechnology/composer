@@ -16,7 +16,9 @@
     "lint": "eslint .",
     "tslint": "tslint",
     "licchk": "license-check-and-add",
-    "test": "nyc mocha -t 0 test/*.js"
+    "test": "nyc mocha -t 0 test/*.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "composer-client": "0.20.1",
@@ -24,7 +26,8 @@
     "shelljs": "0.7.7",
     "underscore.string": "3.3.4",
     "yeoman-generator": "0.24.1",
-    "yeoman-option-or-prompt": "2.0.0"
+    "yeoman-option-or-prompt": "2.0.0",
+    "snyk": "^1.161.1"
   },
   "repository": {
     "type": "git",
@@ -118,5 +121,6 @@
     "branches": 100,
     "functions": 100,
     "lines": 100
-  }
+  },
+  "snyk": true
 }
