@@ -1,0 +1,55 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.3
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-AXIOS-174505:
+    - composer-common > axios:
+        patched: '2019-05-08T06:12:28.867Z'
+    - composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-08T06:12:28.867Z'
+    - composer-admin > composer-common > axios:
+        patched: '2019-05-08T06:12:28.867Z'
+    - loopback-connector-composer > composer-common > axios:
+        patched: '2019-05-08T06:12:28.867Z'
+    - composer-admin > composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-08T06:12:28.867Z'
+    - composer-admin > composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-08T06:12:28.867Z'
+    - loopback-connector-composer > composer-client > composer-common > axios:
+        patched: '2019-05-08T06:12:28.867Z'
+    - loopback-connector-composer > composer-client > composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-08T06:12:28.867Z'
+    - loopback-connector-composer > composer-client > composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-08T06:12:28.867Z'
+    - composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-08T06:12:28.867Z'
+  'npm:debug:20170905':
+    - composer-admin > composer-connector-proxy > socket.io-client > debug:
+        patched: '2019-05-08T06:12:28.867Z'
+    - composer-admin > composer-connector-proxy > socket.io-client > engine.io-client > debug:
+        patched: '2019-05-08T06:12:28.867Z'
+    - loopback-connector-composer > composer-client > composer-connector-proxy > socket.io-client > debug:
+        patched: '2019-05-08T06:12:28.867Z'
+    - loopback-connector-composer > composer-client > composer-connector-proxy > socket.io-client > engine.io-client > debug:
+        patched: '2019-05-08T06:12:28.867Z'
+    - composer-admin > composer-connector-proxy > socket.io-client > socket.io-parser > debug:
+        patched: '2019-05-08T06:12:28.867Z'
+    - loopback-connector-composer > composer-client > composer-connector-proxy > socket.io-client > socket.io-parser > debug:
+        patched: '2019-05-08T06:12:28.867Z'
+  'npm:mime:20170907':
+    - compression > accepts > mime:
+        patched: '2019-05-08T06:12:28.867Z'
+  'npm:ms:20170412':
+    - composer-admin > composer-connector-proxy > socket.io-client > debug > ms:
+        patched: '2019-05-08T06:12:28.867Z'
+    - composer-admin > composer-connector-proxy > socket.io-client > engine.io-client > debug > ms:
+        patched: '2019-05-08T06:12:28.867Z'
+    - loopback-connector-composer > composer-client > composer-connector-proxy > socket.io-client > debug > ms:
+        patched: '2019-05-08T06:12:28.867Z'
+    - loopback-connector-composer > composer-client > composer-connector-proxy > socket.io-client > engine.io-client > debug > ms:
+        patched: '2019-05-08T06:12:28.867Z'
+    - composer-admin > composer-connector-proxy > socket.io-client > socket.io-parser > debug > ms:
+        patched: '2019-05-08T06:12:28.867Z'
+    - loopback-connector-composer > composer-client > composer-connector-proxy > socket.io-client > socket.io-parser > debug > ms:
+        patched: '2019-05-08T06:12:28.867Z'
