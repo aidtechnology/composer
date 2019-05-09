@@ -1,0 +1,169 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.3
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-AXIOS-174505:
+    - composer-common > axios:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-common > axios:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-common > axios:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime-pouchdb > composer-common > axios:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-common > axios:
+        patched: '2019-05-09T02:54:02.171Z'
+  'npm:debug:20170905':
+    - composer-playground-api > composer-connector-server > socket.io > socket.io-adapter > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > express > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > express > serve-static > send > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime-pouchdb > pouchdb-core > pouchdb-debug > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > engine.io > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > body-parser > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > socket.io-client > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > engine.io > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > express > send > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > socket.io-client > engine.io-client > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > socket.io-client > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > socket.io-client > engine.io-client > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > socket.io-parser > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > socket.io-adapter > socket.io-parser > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > socket.io-client > socket.io-parser > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > socket.io-parser > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > socket.io-adapter > socket.io-parser > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > socket.io-client > socket.io-parser > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > socket.io-adapter > debug:
+        patched: '2019-05-09T02:54:02.171Z'
+  'npm:hoek:20180212':
+    - composer-playground-api > request > hawk > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > request > hawk > sntp > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > request > hawk > boom > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > request > hawk > cryptiles > boom > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime > request > hawk > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > request > hawk > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > request > hawk > sntp > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime > request > hawk > boom > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime > request > hawk > sntp > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > request > hawk > boom > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime > request > hawk > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime-pouchdb > request > hawk > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime > request > hawk > cryptiles > boom > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime > request > hawk > boom > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime-pouchdb > composer-runtime > request > hawk > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime-pouchdb > request > hawk > boom > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > request > hawk > cryptiles > boom > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime-pouchdb > request > hawk > sntp > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime > request > hawk > sntp > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime-pouchdb > request > hawk > cryptiles > boom > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime > request > hawk > cryptiles > boom > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime-pouchdb > composer-runtime > request > hawk > boom > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime-pouchdb > composer-runtime > request > hawk > sntp > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime-pouchdb > composer-runtime > request > hawk > cryptiles > boom > hoek:
+        patched: '2019-05-09T02:54:02.171Z'
+  'npm:mime:20170907':
+    - composer-playground-api > express > send > mime:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > express > serve-static > send > mime:
+        patched: '2019-05-09T02:54:02.171Z'
+  'npm:ms:20170412':
+    - composer-playground-api > body-parser > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > express > send > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > express > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > socket.io-client > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > socket.io-adapter > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > express > serve-static > send > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > express > send > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > engine.io > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > socket.io-client > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > socket.io-client > engine.io-client > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > express > serve-static > send > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > socket.io-adapter > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > engine.io > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > socket.io-client > engine.io-client > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > composer-connector-embedded > composer-runtime-embedded > composer-runtime-pouchdb > pouchdb-core > pouchdb-debug > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > socket.io-parser > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > socket.io-adapter > socket.io-parser > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > socket.io > socket.io-client > socket.io-parser > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > socket.io-parser > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > socket.io-adapter > socket.io-parser > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+    - composer-playground-api > composer-connector-server > socket.io > socket.io-client > socket.io-parser > debug > ms:
+        patched: '2019-05-09T02:54:02.171Z'
+  'npm:qs:20170213':
+    - composer-playground-api > body-parser > qs:
+        patched: '2019-05-09T02:54:02.171Z'
