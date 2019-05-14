@@ -1,0 +1,41 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.3
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-AXIOS-174505:
+    - composer-common > axios:
+        patched: '2019-05-14T06:39:29.356Z'
+    - composer-runtime-pouchdb > composer-common > axios:
+        patched: '2019-05-14T06:39:29.356Z'
+  'npm:debug:20170905':
+    - composer-runtime-pouchdb > pouchdb-core > pouchdb-debug > debug:
+        patched: '2019-05-14T06:39:29.356Z'
+  'npm:hoek:20180212':
+    - composer-runtime-pouchdb > request > hawk > hoek:
+        patched: '2019-05-14T06:39:29.356Z'
+    - composer-runtime > request > hawk > hoek:
+        patched: '2019-05-14T06:39:29.356Z'
+    - composer-runtime-pouchdb > composer-runtime > request > hawk > hoek:
+        patched: '2019-05-14T06:39:29.356Z'
+    - composer-runtime > request > hawk > boom > hoek:
+        patched: '2019-05-14T06:39:29.356Z'
+    - composer-runtime > request > hawk > sntp > hoek:
+        patched: '2019-05-14T06:39:29.356Z'
+    - composer-runtime-pouchdb > request > hawk > boom > hoek:
+        patched: '2019-05-14T06:39:29.356Z'
+    - composer-runtime-pouchdb > request > hawk > sntp > hoek:
+        patched: '2019-05-14T06:39:29.356Z'
+    - composer-runtime-pouchdb > composer-runtime > request > hawk > sntp > hoek:
+        patched: '2019-05-14T06:39:29.356Z'
+    - composer-runtime-pouchdb > composer-runtime > request > hawk > boom > hoek:
+        patched: '2019-05-14T06:39:29.356Z'
+    - composer-runtime-pouchdb > request > hawk > cryptiles > boom > hoek:
+        patched: '2019-05-14T06:39:29.356Z'
+    - composer-runtime > request > hawk > cryptiles > boom > hoek:
+        patched: '2019-05-14T06:39:29.356Z'
+    - composer-runtime-pouchdb > composer-runtime > request > hawk > cryptiles > boom > hoek:
+        patched: '2019-05-14T06:39:29.356Z'
+  'npm:ms:20170412':
+    - composer-runtime-pouchdb > pouchdb-core > pouchdb-debug > debug > ms:
+        patched: '2019-05-14T06:39:29.356Z'
