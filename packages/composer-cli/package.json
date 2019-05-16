@@ -17,7 +17,9 @@
     "licchk": "license-check-and-add",
     "test": "nyc mocha --recursive -t 10000",
     "mocha": "mocha --recursive -t 10000",
-    "nyc": "nyc mocha --recursive -t 10000"
+    "nyc": "nyc mocha --recursive -t 10000",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -51,19 +53,20 @@
     "composer-report": "0.20.1",
     "composer-wallet-filesystem": "0.20.1",
     "composer-wallet-inmemory": "0.20.1",
-    "js-yaml": "3.10.0",
+    "js-yaml": "3.13.1",
     "mkdirp": "0.5.1",
     "moment": "2.19.3",
     "node-report": "2.2.1",
     "npm-paths": "0.1.3",
-    "nunjucks": "3.0.1",
+    "nunjucks": "3.1.3",
     "ora": "1.2.0",
     "prettyjson": "1.2.1",
     "prompt": "1.0.0",
     "sanitize-filename": "1.6.1",
-    "tar": "4.3.0",
+    "tar": "4.4.2",
     "valid-url": "1.0.9",
-    "yargs": "10.0.3"
+    "yargs": "12.0.2",
+    "snyk": "^1.165.0"
   },
   "license-check-and-add-config": {
     "folder": ".",
@@ -125,5 +128,6 @@
     "branches": 100,
     "functions": 100,
     "lines": 100
-  }
+  },
+  "snyk": true
 }

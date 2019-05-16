@@ -1,0 +1,88 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.3
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-AXIOS-174505:
+    - composer-documentation > composer-admin > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-admin > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-admin > composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-client > composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-client > composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-client > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-admin > composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-client > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-client > composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-client > composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-admin > composer-wallet-filesystem > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-admin > composer-wallet-inmemory > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-common > axios:
+        patched: '2019-05-16T08:18:35.159Z'
+  'npm:debug:20170905':
+    - composer-admin > composer-connector-proxy > socket.io-client > debug:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-client > composer-connector-proxy > socket.io-client > debug:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-admin > composer-connector-proxy > socket.io-client > engine.io-client > debug:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-client > composer-connector-proxy > socket.io-client > engine.io-client > debug:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-admin > composer-connector-proxy > socket.io-client > debug:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-client > composer-connector-proxy > socket.io-client > debug:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-admin > composer-connector-proxy > socket.io-client > engine.io-client > debug:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-client > composer-connector-proxy > socket.io-client > engine.io-client > debug:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-admin > composer-connector-proxy > socket.io-client > socket.io-parser > debug:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-client > composer-connector-proxy > socket.io-client > socket.io-parser > debug:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-admin > composer-connector-proxy > socket.io-client > socket.io-parser > debug:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-client > composer-connector-proxy > socket.io-client > socket.io-parser > debug:
+        patched: '2019-05-16T08:18:35.159Z'
+  'npm:ms:20170412':
+    - composer-documentation > composer-admin > composer-connector-proxy > socket.io-client > engine.io-client > debug > ms:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-admin > composer-connector-proxy > socket.io-client > debug > ms:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-admin > composer-connector-proxy > socket.io-client > engine.io-client > debug > ms:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-client > composer-connector-proxy > socket.io-client > engine.io-client > debug > ms:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-admin > composer-connector-proxy > socket.io-client > debug > ms:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-client > composer-connector-proxy > socket.io-client > debug > ms:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-client > composer-connector-proxy > socket.io-client > debug > ms:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-client > composer-connector-proxy > socket.io-client > engine.io-client > debug > ms:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-admin > composer-connector-proxy > socket.io-client > socket.io-parser > debug > ms:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-client > composer-connector-proxy > socket.io-client > socket.io-parser > debug > ms:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-admin > composer-connector-proxy > socket.io-client > socket.io-parser > debug > ms:
+        patched: '2019-05-16T08:18:35.159Z'
+    - composer-documentation > composer-client > composer-connector-proxy > socket.io-client > socket.io-parser > debug > ms:
+        patched: '2019-05-16T08:18:35.159Z'
